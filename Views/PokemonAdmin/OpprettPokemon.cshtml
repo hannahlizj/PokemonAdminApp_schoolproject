@@ -1,0 +1,19 @@
+﻿@model PokemonAdminApp2.Models.Pokemon
+@{
+    ViewBag.Title = "OpprettPokemon";
+}
+
+<h2>Opprett Pokemon</h2>
+
+@using (Html.BeginForm("OpprettPokemon", "PokemonAdmin", FormMethod.Post, new { entype = "multipart/form-data"}))
+{
+    <label>Navn</label>
+    @Html.TextBoxFor(pokemon => pokemon.Navn)
+
+    <input type="file" id="file" name="file" />
+
+    <input type="submit" value="Lagre Pokemon" />
+}
+
+
+

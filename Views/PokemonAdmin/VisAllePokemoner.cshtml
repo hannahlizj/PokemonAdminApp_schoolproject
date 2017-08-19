@@ -1,0 +1,19 @@
+﻿
+@model IEnumerable<PokemonAdminApp2.Models.Pokemon>
+@{
+    ViewBag.Title = "VisAllePokemoner";
+}
+
+<h2>Pokemoner</h2>
+@foreach (var pokemon in Model)
+{
+    <article>
+        <h3>@pokemon.Navn</h3>
+        <p>@pokemon.Beskrivelse</p>
+        @if (pokemon.Trener != null){
+            <p>Trener: @pokemon.Trener.Navn</p>
+        }
+ 
+        <img src="~/Content/@pokemon.BildeSrc" />
+    </article>
+}

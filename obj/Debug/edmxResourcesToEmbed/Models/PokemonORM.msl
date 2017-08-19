@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PokemonDBModelStoreContainer" CdmEntityContainer="PokemonDBEntities">
+    <EntitySetMapping Name="Pokemons">
+      <EntityTypeMapping TypeName="PokemonDBModel.Pokemon">
+        <MappingFragment StoreEntitySet="Pokemon">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Navn" ColumnName="Navn" />
+          <ScalarProperty Name="Beskrivelse" ColumnName="Beskrivelse" />
+          <ScalarProperty Name="BildeSrc" ColumnName="BildeSrc" />
+          <ScalarProperty Name="TrenerId" ColumnName="TrenerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Treners">
+      <EntityTypeMapping TypeName="PokemonDBModel.Trener">
+        <MappingFragment StoreEntitySet="Trener">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Navn" ColumnName="Navn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

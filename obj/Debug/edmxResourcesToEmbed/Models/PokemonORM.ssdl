@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PokemonDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Pokemon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Navn" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Beskrivelse" Type="nvarchar(max)" />
+    <Property Name="BildeSrc" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrenerId" Type="int" />
+  </EntityType>
+  <EntityType Name="Trener">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Navn" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Pokemon_Trener">
+    <End Role="Trener" Type="Self.Trener" Multiplicity="0..1" />
+    <End Role="Pokemon" Type="Self.Pokemon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trener">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pokemon">
+        <PropertyRef Name="TrenerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PokemonDBModelStoreContainer">
+    <EntitySet Name="Pokemon" EntityType="Self.Pokemon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trener" EntityType="Self.Trener" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Pokemon_Trener" Association="Self.FK_Pokemon_Trener">
+      <End Role="Trener" EntitySet="Trener" />
+      <End Role="Pokemon" EntitySet="Pokemon" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

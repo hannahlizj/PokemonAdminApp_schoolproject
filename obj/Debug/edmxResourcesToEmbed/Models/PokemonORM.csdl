@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PokemonDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Pokemon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Navn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Beskrivelse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BildeSrc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TrenerId" Type="Int32" />
+    <NavigationProperty Name="Trener" Relationship="Self.FK_Pokemon_Trener" FromRole="Pokemon" ToRole="Trener" />
+  </EntityType>
+  <EntityType Name="Trener">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Navn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pokemons" Relationship="Self.FK_Pokemon_Trener" FromRole="Trener" ToRole="Pokemon" />
+  </EntityType>
+  <Association Name="FK_Pokemon_Trener">
+    <End Role="Trener" Type="Self.Trener" Multiplicity="0..1" />
+    <End Role="Pokemon" Type="Self.Pokemon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trener">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pokemon">
+        <PropertyRef Name="TrenerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PokemonDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Pokemons" EntityType="Self.Pokemon" />
+    <EntitySet Name="Treners" EntityType="Self.Trener" />
+    <AssociationSet Name="FK_Pokemon_Trener" Association="Self.FK_Pokemon_Trener">
+      <End Role="Trener" EntitySet="Treners" />
+      <End Role="Pokemon" EntitySet="Pokemons" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

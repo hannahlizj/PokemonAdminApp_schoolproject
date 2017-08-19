@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+
+        <header>
+            <h1>PokemonAdmin</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li>@Html.ActionLink("Hjem", "Index", "PokemonAdmin")</li>
+                <li>@Html.ActionLink("Vis Alle", "VisAllePokemoner", "PokemonAdmin")</li>
+                <li>@Html.ActionLink("Opprett", "OpprettPokemon", "PokemonAdmin")</li>
+            </ul>
+        </nav>
+
+        @RenderBody()
+    </div>
+</body>
+</html>
